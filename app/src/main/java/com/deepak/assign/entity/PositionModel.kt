@@ -1,6 +1,7 @@
 package com.deepak.assign.entity
 
 import com.google.gson.annotations.SerializedName
+import java.text.SimpleDateFormat
 
 data class PositionModel(
     val company: String,
@@ -18,6 +19,11 @@ data class PositionModel(
     val title: String,
     val type: String?,
     val url: String
-)
+) {
+    fun convertDate(): String {
+        val formatter = SimpleDateFormat("dd/MM/yyyy")
+        return formatter.format(createdAt)
+    }
+}
 
 

@@ -12,10 +12,10 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
-    private val compositeDisposable: CompositeDisposable,
     val app: Application,
-    private val schedulerProvider: SchedulerProvider,
-    private val repository: MainRepository
+    private val compositeDisposable: CompositeDisposable,
+    private val repository: MainRepository,
+    private val schedulerProvider: SchedulerProvider
 ) : AndroidViewModel(app) {
 
     var jobResponse = MutableLiveData<List<PositionModel>>()

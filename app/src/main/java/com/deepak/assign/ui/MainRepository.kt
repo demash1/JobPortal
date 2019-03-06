@@ -5,8 +5,8 @@ import com.deepak.assign.networking.ProviderSecondApiService
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(
-    private val providerFirstApiService: ProviderFirstApiService,
-    private val providerSecondApiService: ProviderSecondApiService
+     val providerFirstApiService: ProviderFirstApiService,
+     val providerSecondApiService: ProviderSecondApiService
 ) {
 
     fun getPosition(description: String, location: String) = providerFirstApiService.getPositions(description, location)
