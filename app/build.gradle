@@ -81,6 +81,9 @@ dependencies {
 
     implementation 'de.hdodenhof:circleimageview:3.0.0'
 
+    implementation 'com.android.support:customtabs:28.3.0'
+
+
 
 
 

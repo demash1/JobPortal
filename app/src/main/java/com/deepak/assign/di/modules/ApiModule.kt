@@ -1,8 +1,10 @@
 package com.deepak.assign.di.modules
 
 import android.content.Context
-import com.deepak.assign.networking.ApiService
-import com.deepak.assign.util.BASE_END_POINT
+import com.deepak.assign.networking.ProviderFirstApiService
+import com.deepak.assign.networking.ProviderSecondApiService
+import com.deepak.assign.util.BASE_END_POINT_PROVIDER_1
+import com.deepak.assign.util.BASE_END_POINT_PROVIDER_2
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import dagger.Module
 import dagger.Provides
@@ -21,9 +23,7 @@ class ApiModule {
     fun provideOkHttpClient(context: Context): OkHttpClient {
         val cacheSize = 100 * 1024 * 1024 // 10 MB
         val cache = Cache(context.cacheDir, cacheSize.toLong())
-
         val httpLoggingInterceptor = HttpLoggingInterceptor()
-
         val client = OkHttpClient.Builder()
 
         client.cache(cache)
@@ -37,12 +37,22 @@ class ApiModule {
     }
 
     @Provides
-    fun provideApiService(okHttpClient: OkHttpClient): ApiService {
+    fun provideApiService(okHttpClient: OkHttpClient): ProviderFirstApiService {
         return Retrofit.Builder()
-            .baseUrl(BASE_END_POINT)
+            .baseUrl(BASE_END_POINT_PROVIDER_1)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
-            .build().create(ApiService::class.java)
+            .build().create(ProviderFirstApiService::class.java)
+    }
+
+    @Provides
+    fun provideApiServiceSecond(okHttpClient: OkHttpClient): ProviderSecondApiService {
+        return Retrofit.Builder()
+            .baseUrl(BASE_END_POINT_PROVIDER_2)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClient)
+            .build().create(ProviderSecondApiService::class.java)
     }
 }

@@ -8,7 +8,7 @@ import retrofit2.http.GET
 /**
  * Service interface for all API calls.
  */
-interface ApiService {
+interface ProviderFirstApiService {
     @GET("positions.json")
     fun getPositions(): Flowable<List<PositionModel>>
 }
