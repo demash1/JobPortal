@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.deepak.assign.R
 import com.deepak.assign.databinding.ItemRecyclerViewBinding
 import com.deepak.assign.entity.PositionModel
+import kotlinx.android.synthetic.main.item_recycler_view.view.*
 
-class JobAdapter(val list: List<PositionModel>) : RecyclerView.Adapter<JobAdapter.JobViewHolder>() {
+class JobAdapter(private val list: List<PositionModel>, private val listener: OnItemClickListener) :
+    RecyclerView.Adapter<JobAdapter.JobViewHolder>() {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): JobViewHolder {
         val binding: ItemRecyclerViewBinding = DataBindingUtil.inflate(
             LayoutInflater.from(p0.context),
@@ -20,6 +22,9 @@ class JobAdapter(val list: List<PositionModel>) : RecyclerView.Adapter<JobAdapte
     override fun onBindViewHolder(holder: JobViewHolder, p1: Int) {
         val model = list[p1]
         holder.viewItemViewBinding.response = model
+        holder.itemView.item_recycler_view_lin_ly.setOnClickListener {
+            listener.onItemClick(model.url)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -30,5 +35,7 @@ class JobAdapter(val list: List<PositionModel>) : RecyclerView.Adapter<JobAdapte
         var viewItemViewBinding: ItemRecyclerViewBinding = binding
     }
 
-
+    interface OnItemClickListener {
+        fun onItemClick(url: String)
+    }
 }

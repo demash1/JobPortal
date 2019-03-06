@@ -9,6 +9,6 @@ class MainRepository @Inject constructor(
     private val providerSecondApiService: ProviderSecondApiService
 ) {
 
-    fun getPosition() = providerFirstApiService.getPositions()
+    fun getPosition(description: String, location: String) = providerFirstApiService.getPositions(description, location)
     fun getPositionSecond(query: String) = providerSecondApiService.getPositions(query)
 }

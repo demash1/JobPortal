@@ -6,6 +6,7 @@
                   type="com.deepak.assign.entity.PositionModel"/>
     </data>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:id="@+id/item_recycler_view_lin_ly"
                   android:orientation="horizontal"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"

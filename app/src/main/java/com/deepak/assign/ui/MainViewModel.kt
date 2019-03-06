@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import com.deepak.assign.entity.PositionModel
 import com.deepak.assign.entity.SearchModel
 import com.deepak.assign.util.SchedulerProvider
-import com.deepak.assign.util.toPositionModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import timber.log.Timber
@@ -22,10 +21,10 @@ class MainViewModel @Inject constructor(
     var jobResponse = MutableLiveData<List<PositionModel>>()
     var jobResponseSecond = MutableLiveData<List<SearchModel>>()
 
-    fun getPosition() {
+    fun getPosition(description: String, location: String) {
         Timber.e("@@@ test")
         compositeDisposable.add(
-            repository.getPosition()
+            repository.getPosition(description, location)
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
                 .subscribeBy(onNext = {
