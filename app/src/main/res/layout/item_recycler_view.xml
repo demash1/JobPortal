@@ -5,49 +5,65 @@
         <variable name="response"
                   type="com.deepak.assign.entity.PositionModel"/>
     </data>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:id="@+id/item_recycler_view_lin_ly"
-                  android:orientation="horizontal"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:padding="10dp">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/item_recycler_view_lin_ly"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+        <ImageView
+                android:id="@+id/item_recycler_view_image_view"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerVertical="true"
+                android:padding="10dp"
+                android:scaleType="centerInside"
                 app:imageUrl="@{response.companyLogo}"/>
 
         <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_centerVertical="true"
+                android:padding="10dp"
+                android:layout_toEndOf="@+id/item_recycler_view_image_view"
                 android:orientation="vertical">
             <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textStyle="bold"
                     android:text="@{response.title}"
                     tools:text="Title"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textSize="12sp"
                     android:text="@{response.company}"
                     tools:text="Company"/>
             <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textSize="12sp"
                     android:text="@{response.location}"
                     tools:text="Location"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textSize="12sp"
                     android:text="@{response.convertDate()}"
                     tools:text="Posted date"/>
 
-
         </LinearLayout>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#e5e5e5"/>
 
 
-    </LinearLayout>
+    </RelativeLayout>
 </layout>
